@@ -1,4 +1,8 @@
-providers = ["python"]
+[build]
+cmds = ["pip install -r requirements.txt"]
 
-[start]
+[start] 
 cmd = "python main.py"
+
+[variables]
+PYTHONUNBUFFERED = "1"
