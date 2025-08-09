@@ -1,14 +1,12 @@
 cat > nixpacks.toml << 'EOF'
-[build]
-cmds = [
-    "pip install --upgrade pip",
-    "pip install -r requirements.txt"
-]
+providers = ["python"]
 
-[start]
+[phases.build]
+cmds = ["pip install -r requirements.txt"]
+
+[phases.start]
 cmd = "uvicorn main:app --host 0.0.0.0 --port $PORT"
 
 [variables]
 PYTHONUNBUFFERED = "1"
-PORT = "8000"
 EOF
