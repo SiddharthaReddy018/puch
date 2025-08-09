@@ -1,12 +1,13 @@
 cat > nixpacks.toml << 'EOF'
-providers = ["python"]
+[providers]
+python = "3.11"
 
-[phases.build]
-cmds = ["pip install -r requirements.txt"]
+[build]
+cmds = [
+    "python -m pip install --upgrade pip",
+    "pip install -r requirements.txt"
+]
 
-[phases.start]
-cmd = "uvicorn main:app --host 0.0.0.0 --port $PORT"
-
-[variables]
-PYTHONUNBUFFERED = "1"
+[start]
+cmd = "python main.py"
 EOF
