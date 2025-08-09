@@ -1,13 +1,17 @@
+rm nixpacks.toml
 cat > nixpacks.toml << 'EOF'
-[providers]
-python = "3.11"
+providers = ["python"]
 
 [build]
-cmds = [
-    "python -m pip install --upgrade pip",
-    "pip install -r requirements.txt"
-]
+cmds = ["pip install -r requirements.txt"]
 
 [start]
 cmd = "python main.py"
+
+[variables]
+PYTHONUNBUFFERED = "1"
 EOF
+cat nixpacks.toml
+git add .
+git commit -m "Fix corrupted nixpacks.toml file"
+git push origin main
